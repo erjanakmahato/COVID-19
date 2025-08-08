@@ -13,7 +13,6 @@ const Chart=({data:{confirmed, recovered, deaths}, country})=>{
        setDailyData(await fetchDailyData());
 
        }
-      // console.log(dailyData)
       fetchAPI();
        
    },[]);
@@ -27,21 +26,73 @@ const Chart=({data:{confirmed, recovered, deaths}, country})=>{
            datasets:[{
                data:dailyData.map(({confirmed})=>confirmed),
                label:'Infected',
-               borderColor:'#3333ff',
+               borderColor:'#e53e3e',
+               backgroundColor: 'rgba(229, 62, 62, 0.1)',
                fill:true,
+               borderWidth: 2,
+               pointBackgroundColor: '#e53e3e',
+               pointBorderColor: '#fff',
+               pointBorderWidth: 2,
+               pointRadius: 4,
+               pointHoverRadius: 6,
 
            }, {
             data:dailyData.map(({deaths})=>deaths),
-            label:'deaths',
-            borderColor:'red',
-            borderColor:'rgba(255,0,0,0.5)',
+            label:'Deaths',
+            borderColor:'#718096',
+            backgroundColor: 'rgba(113, 128, 150, 0.1)',
             fill:true,
+            borderWidth: 2,
+            pointBackgroundColor: '#718096',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
 
            }],
        }}
+       options={{
+           responsive: true,
+           maintainAspectRatio: false,
+           plugins: {
+               legend: {
+                   labels: {
+                       font: {
+                           size: 14,
+                           weight: '600'
+                       },
+                       padding: 20
+                   }
+               }
+           },
+           scales: {
+               y: {
+                   beginAtZero: true,
+                   grid: {
+                       color: 'rgba(0, 0, 0, 0.1)'
+                   },
+                   ticks: {
+                       font: {
+                           size: 12
+                       }
+                   }
+               },
+               x: {
+                   grid: {
+                       color: 'rgba(0, 0, 0, 0.1)'
+                   },
+                   ticks: {
+                       font: {
+                           size: 12
+                       }
+                   }
+               }
+           }
+       }}
+       height={400}
 />):null
    );
-console.log(confirmed, recovered, deaths);
+
 const barChart=
 (
     confirmed
@@ -52,25 +103,75 @@ const barChart=
             datasets:[{
                 label:'People',
                 backgroundColor:[
-                    'rgba(0,0,255,0.5)',
-                    'rgba(0,255,0,0.5)',
-                    'rgba(255,0,0,0.5)',
+                    'rgba(229, 62, 62, 0.8)',
+                    'rgba(56, 161, 105, 0.8)',
+                    'rgba(113, 128, 150, 0.8)',
                 ],
+                borderColor: [
+                    '#e53e3e',
+                    '#38a169',
+                    '#718096'
+                ],
+                borderWidth: 1,
+                borderRadius: 4,
+                borderSkipped: false,
                 data:[confirmed.value, recovered.value, deaths.value]
             }]
 
         }}
         options={{
-            legend:{display:false},
-            title:{display:true, text:`Current state in ${country}`},
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend:{display:false},
+                title:{
+                    display:true, 
+                    text:`Current state in ${country}`,
+                    font: {
+                        size: 16,
+                        weight: '600'
+                    },
+                    color: '#2d3748'
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    ticks: {
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 14,
+                            weight: '600'
+                        }
+                    }
+                }
+            }
         }}
+        height={400}
         />
     ):null
 );
    
     return(
         <div className={styles.container}>
-            {country ? barChart:lineChart}
+            <div className={styles.chartTitle}>
+                {country ? `COVID-19 Statistics for ${country}` : 'Global COVID-19 Statistics'}
+            </div>
+            <div className={styles.chartWrapper}>
+                {country ? barChart:lineChart}
+            </div>
         </div>
     )
 }

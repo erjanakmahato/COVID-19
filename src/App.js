@@ -29,12 +29,19 @@ this.setState({data:fetchedData, country:country});
     render(){
         const{data,country}=this.state;
         return(
-
             <div className={styles.container}>
-                <img className={styles.image} src={coronaImage} alt="COVID-19"/>
-               <Cards data={data}/>
-               <CountryPicker handleCountryChange={this.handleCountryChange}/>
-               <Chart data={data} country={country} />
+                <header className={styles.header}>
+                    <div className={styles.headerContent}>
+                        <img className={styles.image} src={coronaImage} alt="COVID-19"/>
+                        <h1 className={styles.title}>COVID-19 Tracker</h1>
+                        <p className={styles.subtitle}>Real-time global coronavirus statistics</p>
+                    </div>
+                </header>
+                <main className={styles.main}>
+                    <Cards data={data}/>
+                    <CountryPicker handleCountryChange={this.handleCountryChange}/>
+                    <Chart data={data} country={country} />
+                </main>
             </div>
         )
     }

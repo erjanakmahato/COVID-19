@@ -6,51 +6,57 @@ import CountUp from 'react-countup';
 
 const Cards=({data:{confirmed,recovered,deaths,lastUpdate}})=>{
     if(!confirmed){
-        return 'Loading....';
+        return (
+            <div className={styles.container}>
+                <div style={{textAlign: 'center', padding: '2rem', color: '#718096', fontSize: '1rem'}}>
+                    Loading COVID-19 data...
+                </div>
+            </div>
+        );
     }
     return(
         <div className={styles.container}>
             <Grid container spacing={3} justify="center">
                 <Grid item component ={Card} xs={12} md={3} className={cx(styles.card,styles.infected)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Infected</Typography>
-                        <Typography varaint="h5">
+                    <CardContent className={styles.cardContent}>
+                        <Typography className={styles.cardTitle}>Infected</Typography>
+                        <Typography className={styles.cardNumber}>
                             <CountUp
                             start={0}
                             end={confirmed.value}
                             duration={2.5}
                             separator=","/>
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                        <Typography varaint="body2">Number of active cases of COVID-19</Typography>
+                        <Typography className={styles.cardDate}>{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography className={styles.cardDescription}>Number of active cases of COVID-19</Typography>
                     </CardContent>
                 </Grid>
                 <Grid item component ={Card} xs={12} md={3} className={cx(styles.card,styles.recovered)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Recovered</Typography>
-                        <Typography varaint="h5">
+                    <CardContent className={styles.cardContent}>
+                        <Typography className={styles.cardTitle}>Recovered</Typography>
+                        <Typography className={styles.cardNumber}>
                             <CountUp
                             start={0}
                             end={recovered.value}
                             duration={2.5}
                             separator=","/>
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                        <Typography varaint="body2">Number of recoveries from COVID-19</Typography>
+                        <Typography className={styles.cardDate}>{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography className={styles.cardDescription}>Number of recoveries from COVID-19</Typography>
                     </CardContent>
                 </Grid>
                 <Grid item component ={Card} xs={12} md={3} className={cx(styles.card,styles.deaths)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Deaths</Typography>
-                        <Typography varaint="h5">
+                    <CardContent className={styles.cardContent}>
+                        <Typography className={styles.cardTitle}>Deaths</Typography>
+                        <Typography className={styles.cardNumber}>
                             <CountUp
                             start={0}
                             end={deaths.value}
                             duration={2.5}
                             separator=","/>
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                        <Typography varaint="body2">Number of deaths caused by COVID-19</Typography>
+                        <Typography className={styles.cardDate}>{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography className={styles.cardDescription}>Number of deaths caused by COVID-19</Typography>
                     </CardContent>
                 </Grid>
             </Grid>

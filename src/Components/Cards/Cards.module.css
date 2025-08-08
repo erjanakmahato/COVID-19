@@ -1,21 +1,117 @@
-.container{
-    margin: 50px 0;
+.container {
+    margin: 2rem 0;
+    width: 100%;
+}
 
+.card {
+    margin: 0 0.5rem !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.2s ease !important;
+    overflow: hidden;
+    background: white !important;
 }
-.card{
-    margin: 0 2% !important;
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
-.infected{
-    border-bottom: 10px solid rgba(0, 0, 255, 0.5)
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-color);
 }
-.recovered{
-    border-bottom: 10px solid rgba(0, 255, 0, 0.5)
+
+.infected {
+    --card-color: #e53e3e;
 }
-.deaths{
-    border-bottom: 10px solid rgba(255, 0, 0, 0.5)
+
+.recovered {
+    --card-color: #38a169;
 }
-@media(max-width:770px){
-    .card{
-        margin:2% 0 !important ;
+
+.deaths {
+    --card-color: #718096;
+}
+
+.cardContent {
+    padding: 1.5rem !important;
+    text-align: center;
+}
+
+.cardTitle {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: #4a5568 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cardNumber {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.75rem !important;
+    color: #2d3748 !important;
+}
+
+.cardDate {
+    font-size: 0.75rem !important;
+    color: #718096 !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 400;
+}
+
+.cardDescription {
+    font-size: 0.875rem !important;
+    color: #4a5568 !important;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 1.5rem 0;
+    }
+    
+    .card {
+        margin: 0.5rem 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    .cardContent {
+        padding: 1.25rem !important;
+    }
+    
+    .cardNumber {
+        font-size: 1.75rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 1rem 0;
+    }
+    
+    .cardContent {
+        padding: 1rem !important;
+    }
+    
+    .cardNumber {
+        font-size: 1.5rem !important;
+    }
+    
+    .cardTitle {
+        font-size: 0.8rem !important;
+    }
+    
+    .cardDescription {
+        font-size: 0.8rem !important;
     }
 }
